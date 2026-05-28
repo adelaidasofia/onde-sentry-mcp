@@ -21,6 +21,13 @@ Sentry ships an [official MCP](https://mcp.sentry.dev). It's broader (~30 tools,
 
 See [SETUP.md](SETUP.md) for the Claude Code wiring + token-creation walk-through.
 
+## Maintenance promise
+
+Small focused tool, no SLA. Issues welcome but may not be addressed quickly — if Sentry's API shape changes, the fix is usually 5 lines in `onde_sentry_mcp/client.py`. PRs that keep the tool surface tight are most likely to land.
+
+If you need broader Sentry coverage (Seer integration, dashboards, team management, ~30 tools), use Sentry's official MCP at [mcp.sentry.dev](https://mcp.sentry.dev). This one stays narrow on purpose.
+
 ## License
 
 MIT
+

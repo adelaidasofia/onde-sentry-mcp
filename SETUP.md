@@ -30,33 +30,32 @@ Verify it boots:
 
 ## 3. Register with Claude Code
 
-Add to `~/.claude/settings.json` under `mcpServers`:
+Add to `~/.claude/settings.json` under `mcpServers`. JSON does not expand `~`, so substitute your home dir (or the absolute clone path) in `command`:
 
 ```json
 {
   "mcpServers": {
     "onde-sentry": {
-      "command": "/Users/adelaidadiaz-roa/dev/onde-sentry-mcp/.venv/bin/python",
+      "command": "<absolute-path-to>/onde-sentry-mcp/.venv/bin/python",
       "args": ["-m", "onde_sentry_mcp.server"],
       "env": {
         "SENTRY_AUTH_TOKEN": "<paste-token-here>",
-        "SENTRY_DEFAULT_ORG": "<your-onde-sentry-org-slug>",
-        "SENTRY_DEFAULT_PROJECT": "<your-onde-backend-project-slug>"
+        "SENTRY_DEFAULT_ORG": "<your-sentry-org-slug>",
+        "SENTRY_DEFAULT_PROJECT": "<your-sentry-project-slug>"
       }
     }
   }
 }
 ```
 
-Or via CLI:
+Or via CLI (shell expands `~`):
 
 ```bash
-claude mcp add onde-sentry \
-  --scope user \
-  --env SENTRY_AUTH_TOKEN=<paste-token-here> \
-  --env SENTRY_DEFAULT_ORG=<org-slug> \
-  --env SENTRY_DEFAULT_PROJECT=<project-slug> \
-  -- /Users/adelaidadiaz-roa/dev/onde-sentry-mcp/.venv/bin/python -m onde_sentry_mcp.server
+claude mcp add -s user \
+  --env=SENTRY_AUTH_TOKEN=<paste-token-here> \
+  --env=SENTRY_DEFAULT_ORG=<org-slug> \
+  --env=SENTRY_DEFAULT_PROJECT=<project-slug> \
+  onde-sentry -- ~/dev/onde-sentry-mcp/.venv/bin/python -m onde_sentry_mcp.server
 ```
 
 Restart Claude Code so it picks up the new server.
